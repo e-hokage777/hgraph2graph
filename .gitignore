@@ -7,3 +7,7 @@ model.*
 splits/
 *.pkl
 ckpt/
+
+## my ignores
+data_ex
+outputs_ex

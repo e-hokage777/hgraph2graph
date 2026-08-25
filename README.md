@@ -43,6 +43,7 @@ python train_generator.py --train train_processed/ --vocab data/chembl/vocab.txt
 ```
 python generate.py --vocab data/chembl/vocab.txt --model ckpt/chembl-pretrained/model.ckpt --nsample 1000
 ```
+Note: `nsample` must be evenly divisible by `batch_size`
 
 ## Property-guided molcule generation procedure (a.k.a. finetuning)
 The following script loads a trained Chemprop model and finetunes a pre-trained molecule language model to generate molecules with specific chemical properties.
