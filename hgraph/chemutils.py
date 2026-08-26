@@ -12,10 +12,24 @@ def set_atommap(mol, num=0):
         atom.SetAtomMapNum(num)
     return mol
 
+## alteration [start]
 def get_mol(smiles):
     mol = Chem.MolFromSmiles(smiles)
-    if mol is not None: Chem.Kekulize(mol)
+    if mol is not None:
+        try:
+            # Re-enabling with clearAromaticFlags cleans up the 
+            # sub-fragment's valence states natively so kekulization works.
+            Chem.Kekulize(mol, clearAromaticFlags=True)
+        except Exception:
+            pass # Fallback safety for completely unresolvable sub-fragments
     return mol
+
+# def get_mol(smiles):
+#     mol = Chem.MolFromSmiles(smiles)
+#     if mol is not None: Chem.Kekulize(mol)
+#     return mol
+
+## alteration [end]
 
 def get_smiles(mol):
     return Chem.MolToSmiles(mol, kekuleSmiles=True)
