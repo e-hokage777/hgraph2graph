@@ -12,10 +12,17 @@ if __name__ == "__main__":
         required=True,
         help="Device component to work on",
     )
+    parser.add_argument(
+        "--sep",
+        type=str,
+        choices=[",", ";"],
+        default=";",
+        help="Separator for csv fiel"
+    )
 
     args = parser.parse_args()
 
-    df = pd.read_csv(args.input, sep=";")
+    df = pd.read_csv(args.input, sep=args.sep)
 
     smiles = df[f"SMILES_{args.device_component}"]
 
